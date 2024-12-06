@@ -1,13 +1,30 @@
-import {ScrollView, View} from 'react-native';
 import React from 'react';
-import {Text, useTheme} from 'react-native-paper';
+import {ActivityIndicator, StyleProp, ViewStyle} from 'react-native';
+import {useTheme} from 'react-native-paper';
+import {globalStyles} from '@/config/theme/styles';
 
-export default function LoadingScreen() {
+interface Props {
+  color?: string;
+  size?: number;
+  style?: StyleProp<ViewStyle>;
+}
+
+export default function LoadingScreen({
+  color = 'grey',
+  size = 50,
+  style,
+}: Props) {
   const theme = useTheme();
 
   return (
-    <View style={{flex: 1}}>
-      <Text>LoadingScreen</Text>
-    </View>
+    <ActivityIndicator
+      size={size}
+      style={[
+        globalStyles.loader,
+        {backgroundColor: theme.colors.background},
+        style,
+      ]}
+      color={color}
+    />
   );
 }

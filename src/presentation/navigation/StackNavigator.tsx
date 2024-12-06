@@ -13,6 +13,21 @@ export type RootStackParams = {
 
 const Stack = createStackNavigator<RootStackParams>();
 
+type ScreenConfig = {
+  name: keyof RootStackParams;
+  component: React.ComponentType<any>;
+};
+
+const screens: ScreenConfig[] = [
+  {name: 'LoadingScreen', component: LoadingScreen},
+  {name: 'MapScreen', component: MapScreen},
+  {name: 'PermissionScreen', component: PermissionScreen},
+];
+
+const renderScreens = screens.map(({name, component}) => (
+  <Stack.Screen key={name} name={name} component={component} />
+));
+
 export default function StackNavigator() {
   return (
     <Stack.Navigator
@@ -23,9 +38,7 @@ export default function StackNavigator() {
           backgroundColor: 'white',
         },
       }}>
-      <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
-      <Stack.Screen name="MapScreen" component={MapScreen} />
-      <Stack.Screen name="PermissionScreen" component={PermissionScreen} />
+      {renderScreens}
     </Stack.Navigator>
   );
 }
