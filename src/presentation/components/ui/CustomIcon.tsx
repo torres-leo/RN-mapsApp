@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from '@react-native-vector-icons/ionicons';
 
-type IconName = React.ComponentProps<typeof Icon>['name'];
+export type IconName = React.ComponentProps<typeof Icon>['name'];
 
 interface Props {
   name: IconName;
